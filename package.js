@@ -2,7 +2,7 @@ Package.describe({
   name: 'sojourneer:object-serializer',
   version: '0.0.1',
   // Brief, one-line summary of the package.
-  summary: '',
+  summary: 'JavaScript serializer / deserializer that can serialize and deserialize custom classes.',
   // URL to the Git repository containing the source code for this package.
   git: 'https://github.com/Sojourneer/meteor_object_serializer.git',
   // By default, Meteor will default to using README.md for documentation.
@@ -20,6 +20,6 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
-  api.use('serializer');
+  api.use('sojourneer:object-serializer');
   api.mainModule('serializer-tests.js');
 });
