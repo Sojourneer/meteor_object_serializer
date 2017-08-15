@@ -20,6 +20,8 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
+  api.use(['practicalmeteor:munit']);
   api.use('sojourneer:object-serializer');
   api.mainModule('serializer-tests.js');
+  api.mainModule('serializer-munit-tests.js');
 });

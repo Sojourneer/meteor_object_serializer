@@ -2,7 +2,7 @@
 
 // Variables exported by this module can be imported by other packages and
 // applications. See serializer-tests.js for an example of importing.
-export const name = 'serializer';
+export const name = 'object-serializer';
 
 class ConfigError extends Error {
 }
