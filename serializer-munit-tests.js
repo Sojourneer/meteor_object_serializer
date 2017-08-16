@@ -62,7 +62,7 @@ describe('seri', () => {
         it('stringify/parse custom class', () => {
             class A {
                 static toJSON (a) { return `${a.a},${a.b}` };
-                static fromJSON (json) { return new A(...json.split(',')) };
+                static fromJSON (json,_class) { return new _class(...json.split(',')) };
 
                 constructor(a, b) {
                     this.a = a;
@@ -99,7 +99,7 @@ describe('seri', () => {
             class XY {
                 // Simply provide `toJSON` and `fromJSON`.
                 static toJSON ({x,y}) { return `${x},${y}` };
-                static fromJSON (json) { return new XY(...json.split(',').map(Number)); }
+                static fromJSON (json, _class) { return new _class(...json.split(',').map(Number)); }
 
                 constructor(x, y) {
                     this.x = x;
@@ -133,7 +133,7 @@ describe('seri', () => {
 
         it('README Nested Class', () => {
             class Item {
-                static fromJSON (name) { return new Item(name); }
+                static fromJSON (name, _class) { return new _class(name); }
 
                 constructor(name) {
                     this.name = name;
@@ -145,7 +145,7 @@ describe('seri', () => {
             }
 
             class Bag {
-                static fromJSON (itemsJson) { return new Bag(seri.parse(itemsJson)); }
+                static fromJSON (itemsJson, _class) { return new _class(seri.parse(itemsJson)); }
 
                 constructor(items) {
                     this.items = items;
@@ -260,7 +260,7 @@ describe('seri', () => {
             const mySeri = create();
 
             class A {
-                static fromJSON(json) { return new A(json); }
+                static fromJSON(json, _class) { return new _class(json); }
 
                 constructor(a) {
                     this.a = a;

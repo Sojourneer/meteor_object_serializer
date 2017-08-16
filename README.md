@@ -74,8 +74,7 @@ dateClone instanceof Date;
 class XY {
   // Simply provide `toJSON` and `fromJSON`.
   static toJSON = ({x, y}) => `${x},${y}`
-  static fromJSON = (json) => new XY(...json.split(',').map(Number))
-
+  static fromJSON = (json, _class) => new XY(...json.split(',').map(Number))
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -114,7 +113,8 @@ xy.equals(xyClone);
 #### Nested Custom Classes
 ```javascript
 class Item {
-  static fromJSON = (name) => new Item(name)
+  //Note that the class (constructor) is passed in, so it is not necessary to hardcode the class. This facilitates inheritance.
+  static fromJSON = (name, _class) => new _class(name)
 
   constructor(name) {
     this.name = name;
@@ -126,7 +126,7 @@ class Item {
 }
 
 class Bag {
-  static fromJSON = (itemsJson) => new Bag(seri.parse(itemsJson))
+  static fromJSON = (itemsJson, _class) => new _class(seri.parse(itemsJson))
 
   constructor(items) {
     this.items = items;

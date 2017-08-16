@@ -286,7 +286,7 @@ const create = (options = {}) => {
 
                     const fromJSON = getFromJSON(Class, className);
                     if (fromJSON) {
-                        return fromJSON(json);
+                        return fromJSON(json, Class);
                     }
 
                     if (!isFunction(Class)) {
