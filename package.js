@@ -1,6 +1,6 @@
 Package.describe({
   name: 'sojourneer:object-serializer',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'JavaScript serializer / deserializer that can serialize and deserialize custom classes.',
   // URL to the Git repository containing the source code for this package.

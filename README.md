@@ -11,11 +11,9 @@ meteor add sojourneer:serializer
 
 #### Basic
 ```javascript
-import Serializer from 'sojourneer:serializer';
+const serializedString = Serializer.stringify(obj);
 
-const serializedString = seri.stringify(obj);
-
-const deserializedObject = seri.parse(obj);
+const deserializedObject = Serializer.parse(obj);
 ```
 
 #### Plain JS Objects
