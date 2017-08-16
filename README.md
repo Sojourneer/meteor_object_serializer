@@ -1,4 +1,4 @@
-# seri
+# Serializer
 JavaScript serializer / deserializer for modern apps that can serialize and deserialize custom classes.
 
 
@@ -34,13 +34,13 @@ const obj = {
 
 // It generates same serialized string as JSON.stringify
 // for plain JS objects.
-seri.stringify(obj) === JSON.stringify(obj);
+Serializer.stringify(obj) === JSON.stringify(obj);
 ```
 
 #### Date Support
 ```javascript
 const date = new Date();
-const dateClone = seri.parse(seri.stringify(date));
+const dateClone = Serializer.parse(Serializer.stringify(date));
 
 // It is a Date instance.
 dateClone instanceof Date;
@@ -59,7 +59,7 @@ const date = new Date();
 // Nested deep in object.
 const obj = {a: [{b: date}]};
 
-const objClone = seri.parse(seri.stringify(obj));
+const objClone = Serializer.parse(Serializer.stringify(obj));
 const dateClone = objClone.a[0].b;
 
 // Class instances can be nested anywhere you want.
@@ -85,11 +85,11 @@ class XY {
   }
 }
 
-// Register to seri.
-seri.addClass(XY);
+// Register to Serializer.
+Serializer.addClass(XY);
 
 const xy = new XY(5, 3);
-const xyClone = seri.parse(seri.stringify(xy));
+const xyClone = Serializer.parse(Serializer.stringify(xy));
 
 // Is an instance of XY
 xyClone instanceof XY;
@@ -102,7 +102,7 @@ xy.equals(xyClone);
 
 
 // Also, can be nested.
-const xyNestedClone = seri.parse(seri.stringify({xy})).xy;
+const xyNestedClone = Serializer.parse(Serializer.stringify({xy})).xy;
 
 // Cool!
 xy.equals(xyClone);
@@ -124,20 +124,20 @@ class Item {
 }
 
 class Bag {
-  static fromJSON = (itemsJson, _class) => new _class(seri.parse(itemsJson))
+  static fromJSON = (itemsJson, _class) => new _class(Serializer.parse(itemsJson))
 
   constructor(items) {
     this.items = items;
   }
 
   toJSON() {
-    return seri.stringify(this.items);
+    return Serializer.stringify(this.items);
   }
 }
 
 // register classes
-seri.addClass(Item);
-seri.addClass(Bag);
+Serializer.addClass(Item);
+Serializer.addClass(Bag);
 
 
 const bag = new Bag([
@@ -146,7 +146,7 @@ const bag = new Bag([
 ]);
 
 
-const bagClone = seri.parse(seri.stringify(bag));
+const bagClone = Serializer.parse(Serializer.stringify(bag));
 
 
 // validate
@@ -178,7 +178,7 @@ JSON.stringify({
 
 Here's an example with `Date`:
 ```javascript
-seri.stringify(new Date());
+Serializer.stringify(new Date());
 
 // '{"<5Er1]":"Date","p":"2016-06-23T22:01:47.974Z"}'
 ```
